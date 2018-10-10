@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ConvertFromComponent } from './components/convert-from/convert-from.component';
 import { ConvertToComponent } from './components/convert-to/convert-to.component';
+import { SelectFolderComponent } from './components/select-folder/select-folder.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     WebviewDirective,
     ConvertFromComponent,
-    ConvertToComponent
+    ConvertToComponent,
+    SelectFolderComponent
   ],
   imports: [
     BrowserModule,

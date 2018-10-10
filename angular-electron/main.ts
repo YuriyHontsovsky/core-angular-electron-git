@@ -89,7 +89,7 @@ function startApi() {
   if (os.platform() === 'darwin') {
     apipath = path.join(__dirname, '..//api//bin//dist//osx//Api');
   }
-  apiProcess = proc(apipath)
+  apiProcess = proc(apipath);
 
   apiProcess.stdout.on('data', (data) => {
     writeLog(`stdout: ${data}`);
@@ -99,6 +99,6 @@ function startApi() {
   });
 }
 
-function writeLog(msg){
+function writeLog(msg) {
   console.log(msg);
 }

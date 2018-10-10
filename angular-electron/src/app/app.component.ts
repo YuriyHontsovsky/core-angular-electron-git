@@ -17,11 +17,6 @@ export class AppComponent {
 
     if (electronService.isElectron()) {
       console.log('Mode electron');
-
-      electronService.remote.dialog.showOpenDialog({
-        title: 'Output Folder', properties: ['openDirectory'] },
-        (folders) => { console.log(folders[0]); });
-
       console.log('Electron ipcRenderer', electronService.ipcRenderer);
       console.log('NodeJS childProcess', electronService.childProcess);
     } else {
