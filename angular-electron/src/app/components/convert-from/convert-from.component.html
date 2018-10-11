@@ -1,16 +1,9 @@
 <div class="container">
-    <table>
-      <tr class="top">
-        <td>
-          <p class="title">
-            CONVERT FROM
-          </p>
-        </td>
-      </tr>
-      <tr class="body">
-        <td>
-          <app-select-folder></app-select-folder>
-        </td>
-      </tr>
-    </table>
+  <p class="title">
+    CONVERT FROM
+  </p>
+  <br>
+  <app-select-folder [inputTitle] = "sourceFolderTitle"></app-select-folder>
+  <br>
+  <app-convert-from-folder-content></app-convert-from-folder-content>
 </div>

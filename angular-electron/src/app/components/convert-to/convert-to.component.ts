@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConvertToComponent implements OnInit {
 
+  outputFolderTitle = 'Output Folder';
+
   constructor() { }
 
   ngOnInit() {

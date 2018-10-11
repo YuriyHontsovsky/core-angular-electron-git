@@ -1,21 +1,13 @@
 .container {
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: end;
+    border: 5px solid black;
   
     .title {
       color: white;
       margin:0;
       padding:50px 20px;
     }
-  
-    .top {
-      height:20%;
-    }
-    
-    .body {
-      height:80%;
-    }
   }
-

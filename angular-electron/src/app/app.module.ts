@@ -22,6 +22,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ConvertFromComponent } from './components/convert-from/convert-from.component';
 import { ConvertToComponent } from './components/convert-to/convert-to.component';
 import { SelectFolderComponent } from './components/select-folder/select-folder.component';
+import { AppModelService } from './providers/app-model.service';
+import { ConvertFromFolderContentComponent } from './components/convert-from-folder-content/convert-from-folder-content.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { ProgressComponent } from './components/progress/progress.component';
+import { ConvertComponent } from './components/convert/convert.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,7 +40,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     WebviewDirective,
     ConvertFromComponent,
     ConvertToComponent,
-    SelectFolderComponent
+    SelectFolderComponent,
+    ConvertFromFolderContentComponent,
+    SettingsComponent,
+    ProgressComponent,
+    ConvertComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    AppModelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

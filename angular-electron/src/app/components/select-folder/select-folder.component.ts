@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ElectronService } from '../../providers/electron.service';
 export class SelectFolderComponent implements OnInit {
 
   sourceFolder: string;
+  @Input() inputTitle: string;
 
   constructor(public electronService: ElectronService) { }
 
