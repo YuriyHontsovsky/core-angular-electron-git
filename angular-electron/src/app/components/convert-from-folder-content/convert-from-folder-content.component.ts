@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppApiService } from '../../providers/app-api.service';
 
 @Component({
   selector: 'app-convert-from-folder-content',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConvertFromFolderContentComponent implements OnInit {
 
-  constructor() { }
+  dir_path: Array<object>;
+
+  public get dir_path_str() : string {
+    return JSON.stringify(this.dir_path);
+  }
+
+  constructor(private appApiService: AppApiService) { }
+
+  getDirPath(): void {
+    this.appApiService.getContacts().subscribe((data:  Array<object>) => {
+      this.dir_path  =  data;
+    });
+  }
 
   ngOnInit() {
+    this.getDirPath();
   }
 
 }
