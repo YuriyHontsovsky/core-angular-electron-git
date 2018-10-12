@@ -6,7 +6,7 @@ using ToolBox.Platform;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/contacts")]
     public class ContactsController : Controller
     {
         public static INotificationSystem _notificationSystem { get; set; }
@@ -36,19 +36,6 @@ namespace api.Controllers
         public IActionResult Get()
         {
             string testString = "test";
-            /*
-            Response resultResponse = _shell.Term("convert '/Users/ygont/Development/core_electron/src/ImageMagick/flower_original.jpg' -font courier -fill white -pointsize 200 -annotate +250+250 'Flower 666' '/Users/ygont/Development/core_electron/src/ImageMagick/result.jpg'", Output.Hidden);
-
-
-            if (resultResponse.code == 0)
-            {
-                testString = "Command Works :D";
-            }
-            else
-            {
-                testString = resultResponse.stderr;
-            }
-            */
             var result = new[] {
                 new { FirstName = testString, LastName = "Doe" },
                 new { FirstName = "Mike", LastName = "Smith" }
