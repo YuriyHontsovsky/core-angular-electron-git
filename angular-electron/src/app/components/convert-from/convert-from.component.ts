@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { select } from 'console';
+import { SelectFolderComponent } from '../select-folder/select-folder.component';
+import { ConvertFromFolderContentComponent } from '../convert-from-folder-content/convert-from-folder-content.component';
 
 @Component({
   selector: 'app-convert-from',
@@ -9,9 +12,19 @@ export class ConvertFromComponent implements OnInit {
 
   sourceFolderTitle = 'Source Folder';
 
+  @ViewChild(SelectFolderComponent)
+  private selectFolderComponent: SelectFolderComponent;
+
+  @ViewChild(ConvertFromFolderContentComponent)
+  private convertFromFolderContentComponent: ConvertFromFolderContentComponent;
+    
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onFolderSelected($folderSelected: string){
+    this.convertFromFolderContentComponent.getFileExtentionsCount(this.selectFolderComponent.sourceFolder);
   }
 
 }

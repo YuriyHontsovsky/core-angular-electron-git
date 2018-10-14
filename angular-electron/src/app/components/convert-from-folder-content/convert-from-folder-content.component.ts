@@ -22,8 +22,15 @@ export class ConvertFromFolderContentComponent implements OnInit {
     });
   }
 
+  public getFileExtentionsCount(folderSelected: string): void {
+    this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<object>) => {
+      this.dir_path  =  data;
+    });
+  }
+
   ngOnInit() {
-    this.getDirPath();
+    //this.getDirPath();
+    //this.getFileExtentionsCount();
   }
 
 }

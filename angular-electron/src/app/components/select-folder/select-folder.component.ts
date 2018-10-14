@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
 
 @Component({
@@ -8,9 +8,11 @@ import { ElectronService } from '../../providers/electron.service';
 })
 export class SelectFolderComponent implements OnInit {
 
-  sourceFolder: string;
+  public sourceFolder: string;
+  
   @Input() inputTitle: string;
-
+  @Output() folderSelected = new EventEmitter<string>();
+  
   constructor(public electronService: ElectronService) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class SelectFolderComponent implements OnInit {
         (folders) => {
           if ((folders) && (folders.length > 0)) {
             this.sourceFolder = folders[0];
+            this.folderSelected.emit(this.sourceFolder);
           }
         });
     }

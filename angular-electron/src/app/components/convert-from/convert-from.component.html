@@ -3,7 +3,7 @@
     CONVERT FROM
   </p>
   <br>
-  <app-select-folder [inputTitle] = "sourceFolderTitle"></app-select-folder>
+  <app-select-folder [inputTitle] = "sourceFolderTitle" (folderSelected) = "onFolderSelected($event)"></app-select-folder>
   <br>
   <app-convert-from-folder-content></app-convert-from-folder-content>
 </div>
