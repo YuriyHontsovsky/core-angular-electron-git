@@ -6,7 +6,7 @@ using ToolBox.Platform;
 
 namespace api.Controllers
 {
-    [Route("api/contacts")]
+    [Route("contacts")]
     public class ContactsController : Controller
     {
         public static INotificationSystem _notificationSystem { get; set; }

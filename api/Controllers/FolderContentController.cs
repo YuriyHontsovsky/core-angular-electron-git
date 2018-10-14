@@ -1,18 +1,37 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace api.Controllers
 {
-    [Route("api/foldercontent")]
-    class FolderContentController : Controller
+    [Route("foldercontent")]
+    public class FolderContentController : Controller
     {
         // GET api/FolderContent
         [HttpGet("{folder}")]
         public IActionResult FolderContent(string folder)
         {
-            var result = new[] {
-                new { folder = folder },
-            };
+            string[] extensions = { ".raw", ".jpg", ".png", ".tif", ".psd" };
+
+            var extDict = new Dictionary<string, int>();
+            foreach (var file in Directory.EnumerateFiles(folder))
+            {
+                var ext = System.IO.Path.GetExtension(file).ToLower();
+                if (extensions.Contains(ext))
+                {
+                    //int count = 1;
+                    if (extDict.TryGetValue(ext, out int count))
+                    {
+                        extDict.Remove(ext);
+                    }
+                    count++;
+                    extDict.Add(ext, count);
+                }
+            }
+            var result = from extCount in extDict
+                         select new { extention = extCount.Key, count = extCount.Value };
 
             return Ok(result);
         }
