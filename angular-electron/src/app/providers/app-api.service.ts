@@ -13,7 +13,7 @@ export class AppApiService {
   getContacts() {
     return this.httpClient.get(`${this.API_URL}/contacts`);
   }
-  
+
   getFileExtentionsCount(folder) {
     return this.httpClient.get(`${this.API_URL}/foldercontent/${encodeURIComponent(folder)}`);
   }

@@ -13,25 +13,27 @@ namespace api.Controllers
         [HttpGet("{folder}")]
         public IActionResult FolderContent(string folder)
         {
-            string[] extensions = { ".raw", ".jpg", ".png", ".tif", ".psd" };
+            string[] extensions = { ".RAW", ".JPG", ".PNG", ".TIG", ".PSD" };
 
             var extDict = new Dictionary<string, int>();
+            foreach(var ext in extensions)
+            {
+                extDict.Add(ext, 0);
+            }
             foreach (var file in Directory.EnumerateFiles(folder))
             {
-                var ext = System.IO.Path.GetExtension(file).ToLower();
+                var ext = System.IO.Path.GetExtension(file).ToUpper();
                 if (extensions.Contains(ext))
                 {
-                    //int count = 1;
-                    if (extDict.TryGetValue(ext, out int count))
-                    {
-                        extDict.Remove(ext);
-                    }
-                    count++;
-                    extDict.Add(ext, count);
+                    extDict[ext] = extDict[ext] + 1;
                 }
             }
             var result = from extCount in extDict
-                         select new { extention = extCount.Key, count = extCount.Value };
+                         select new {
+                             selected = false,
+                             extention = extCount.Key.Substring(1),
+                             count = extCount.Value
+                         };
 
             return Ok(result);
         }

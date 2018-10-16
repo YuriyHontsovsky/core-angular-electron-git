@@ -17,14 +17,15 @@ export class ConvertFromComponent implements OnInit {
 
   @ViewChild(ConvertFromFolderContentComponent)
   private convertFromFolderContentComponent: ConvertFromFolderContentComponent;
-    
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onFolderSelected($folderSelected: string){
-    this.convertFromFolderContentComponent.getFileExtentionsCount(this.selectFolderComponent.sourceFolder);
+  onFolderSelected($folderSelected: string) {
+    console.log($folderSelected);
+    this.convertFromFolderContentComponent.getFileExtentionsCount($folderSelected);
   }
 
 }

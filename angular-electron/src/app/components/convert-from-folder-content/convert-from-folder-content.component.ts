@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
 import { AppApiService } from '../../providers/app-api.service';
+import { ImageType } from '../../classes/ImageType';
+import { ConvertFromImageTypeComponent } from '../convert-from-image-type/convert-from-image-type.component';
+import { ConvertFromImageTypeTotalComponent } from '../convert-from-image-type-total/convert-from-image-type-total.component';
 
 @Component({
   selector: 'app-convert-from-folder-content',
@@ -8,29 +11,32 @@ import { AppApiService } from '../../providers/app-api.service';
 })
 export class ConvertFromFolderContentComponent implements OnInit {
 
-  dir_path: Array<object>;
+  imageTypes: Array<ImageType>;
 
-  public get dir_path_str() : string {
-    return JSON.stringify(this.dir_path);
-  }
+  @ViewChildren(ConvertFromImageTypeComponent)
+  private convertFromImageTypeComponents: ConvertFromImageTypeComponent;
+
+  @ViewChild(ConvertFromImageTypeTotalComponent)
+  private convertFromImageTypeTotalComponent: ConvertFromImageTypeTotalComponent;
 
   constructor(private appApiService: AppApiService) { }
 
-  getDirPath(): void {
-    this.appApiService.getContacts().subscribe((data:  Array<object>) => {
-      this.dir_path  =  data;
+  public getFileExtentionsCount(folderSelected: string): void {
+    this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<ImageType>) => {
+      this.imageTypes = data;
     });
   }
 
-  public getFileExtentionsCount(folderSelected: string): void {
-    this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<object>) => {
-      this.dir_path  =  data;
-    });
+  onChecked($imageType: ImageType) {
+    this.convertFromImageTypeTotalComponent.totalSelected = this.TotalSelected();
+  }
+
+  TotalSelected(): number {
+
+    return 0;
   }
 
   ngOnInit() {
-    //this.getDirPath();
-    //this.getFileExtentionsCount();
   }
 
 }

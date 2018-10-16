@@ -27,6 +27,8 @@ import { ConvertFromFolderContentComponent } from './components/convert-from-fol
 import { SettingsComponent } from './components/settings/settings.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { ConvertComponent } from './components/convert/convert.component';
+import { ConvertFromImageTypeComponent } from './components/convert-from-image-type/convert-from-image-type.component';
+import { ConvertFromImageTypeTotalComponent } from './components/convert-from-image-type-total/convert-from-image-type-total.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +46,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConvertFromFolderContentComponent,
     SettingsComponent,
     ProgressComponent,
-    ConvertComponent
+    ConvertComponent,
+    ConvertFromImageTypeComponent,
+    ConvertFromImageTypeTotalComponent
   ],
   imports: [
     BrowserModule,

@@ -9,10 +9,10 @@ import { ElectronService } from '../../providers/electron.service';
 export class SelectFolderComponent implements OnInit {
 
   public sourceFolder: string;
-  
+
   @Input() inputTitle: string;
   @Output() folderSelected = new EventEmitter<string>();
-  
+
   constructor(public electronService: ElectronService) { }
 
   ngOnInit() {
