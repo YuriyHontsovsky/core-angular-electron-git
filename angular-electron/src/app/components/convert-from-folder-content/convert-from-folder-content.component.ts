@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild, QueryList } from '@angular/core';
 import { AppApiService } from '../../providers/app-api.service';
 import { ImageType } from '../../classes/ImageType';
 import { ConvertFromImageTypeComponent } from '../convert-from-image-type/convert-from-image-type.component';
@@ -14,7 +14,7 @@ export class ConvertFromFolderContentComponent implements OnInit {
   imageTypes: Array<ImageType>;
 
   @ViewChildren(ConvertFromImageTypeComponent)
-  private convertFromImageTypeComponents: ConvertFromImageTypeComponent;
+  private convertFromImageTypeComponents: QueryList<ConvertFromImageTypeComponent>;
 
   @ViewChild(ConvertFromImageTypeTotalComponent)
   private convertFromImageTypeTotalComponent: ConvertFromImageTypeTotalComponent;
@@ -27,13 +27,18 @@ export class ConvertFromFolderContentComponent implements OnInit {
     });
   }
 
-  onChecked($imageType: ImageType) {
+  onChanged($imageType: ImageType) {
     this.convertFromImageTypeTotalComponent.totalSelected = this.TotalSelected();
   }
 
   TotalSelected(): number {
-
-    return 0;
+    let selectedCount = 0;
+    this.convertFromImageTypeComponents.forEach(element => {
+      if (element.imageType.selected) {
+        selectedCount += element.imageType.count;
+      }
+    });
+    return selectedCount;
   }
 
   ngOnInit() {

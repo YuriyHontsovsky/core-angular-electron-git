@@ -3,7 +3,7 @@
     <app-convert-from-image-type 
       *ngFor="let imageType of imageTypes" 
       [imageType] = "imageType" 
-      (imageTypeChecked) = "onChecked($event)">
+      (imageTypeChecked) = "onChanged($event)">
     </app-convert-from-image-type>
     <app-convert-from-image-type-total></app-convert-from-image-type-total>
   </table>

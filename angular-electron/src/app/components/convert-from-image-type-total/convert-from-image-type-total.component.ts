@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConvertFromImageTypeTotalComponent implements OnInit {
 
-  totalSelected: number;
+  totalSelected = 0;
 
   constructor() { }
 

@@ -16,10 +16,6 @@ export class ConvertFromImageTypeComponent implements OnInit {
   ngOnInit() {
   }
 
-  doOnSelect(): void {
-    this.imageTypeChecked.emit(this.imageType);
-  }
-
   onChange() {
     this.imageType.selected = !this.imageType.selected;
     this.imageTypeChecked.emit(this.imageType);
