@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { select } from 'console';
 import { SelectFolderComponent } from '../select-folder/select-folder.component';
 import { ConvertFromFolderContentComponent } from '../convert-from-folder-content/convert-from-folder-content.component';
 
@@ -24,7 +23,6 @@ export class ConvertFromComponent implements OnInit {
   }
 
   onFolderSelected($folderSelected: string) {
-    console.log($folderSelected);
     this.convertFromFolderContentComponent.getFileExtentionsCount($folderSelected);
   }
 

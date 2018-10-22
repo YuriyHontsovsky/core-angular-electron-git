@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
 
 @Component({
@@ -13,12 +13,12 @@ export class SelectFolderComponent implements OnInit {
   @Input() inputTitle: string;
   @Output() folderSelected = new EventEmitter<string>();
 
-  constructor(public electronService: ElectronService) { }
+  constructor(public electronService: ElectronService, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
 
-  addFholderClick() {
+  addFolderClick() {
     if (this.electronService.isElectron()) {
       this.electronService.remote.dialog.showOpenDialog({
         title: 'Output Folder', properties: ['openDirectory'] },
@@ -26,6 +26,7 @@ export class SelectFolderComponent implements OnInit {
           if ((folders) && (folders.length > 0)) {
             this.sourceFolder = folders[0];
             this.folderSelected.emit(this.sourceFolder);
+            this.ref.detectChanges();
           }
         });
     }

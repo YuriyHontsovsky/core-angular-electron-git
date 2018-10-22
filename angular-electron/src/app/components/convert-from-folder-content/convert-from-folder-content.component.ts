@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ViewChild, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild, QueryList, ChangeDetectorRef } from '@angular/core';
 import { AppApiService } from '../../providers/app-api.service';
 import { ImageType } from '../../classes/ImageType';
 import { ConvertFromImageTypeComponent } from '../convert-from-image-type/convert-from-image-type.component';
@@ -19,11 +19,12 @@ export class ConvertFromFolderContentComponent implements OnInit {
   @ViewChild(ConvertFromImageTypeTotalComponent)
   private convertFromImageTypeTotalComponent: ConvertFromImageTypeTotalComponent;
 
-  constructor(private appApiService: AppApiService) { }
+  constructor(private appApiService: AppApiService, private ref: ChangeDetectorRef) { }
 
   public getFileExtentionsCount(folderSelected: string): void {
     this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<ImageType>) => {
       this.imageTypes = data;
+      this.ref.detectChanges();
     });
   }
 
