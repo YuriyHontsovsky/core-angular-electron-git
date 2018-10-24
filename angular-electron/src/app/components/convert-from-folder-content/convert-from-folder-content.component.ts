@@ -3,6 +3,7 @@ import { AppApiService } from '../../providers/app-api.service';
 import { ImageType } from '../../classes/ImageType';
 import { ConvertFromImageTypeComponent } from '../convert-from-image-type/convert-from-image-type.component';
 import { ConvertFromImageTypeTotalComponent } from '../convert-from-image-type-total/convert-from-image-type-total.component';
+import { AppModelService } from '../../providers/app-model.service';
 
 @Component({
   selector: 'app-convert-from-folder-content',
@@ -19,7 +20,10 @@ export class ConvertFromFolderContentComponent implements OnInit {
   @ViewChild(ConvertFromImageTypeTotalComponent)
   private convertFromImageTypeTotalComponent: ConvertFromImageTypeTotalComponent;
 
-  constructor(private appApiService: AppApiService, private ref: ChangeDetectorRef) { }
+  constructor(
+    private appApiService: AppApiService,
+    private ref: ChangeDetectorRef,
+    private appModel: AppModelService) { }
 
   public getFileExtentionsCount(folderSelected: string): void {
     this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<ImageType>) => {
@@ -29,7 +33,8 @@ export class ConvertFromFolderContentComponent implements OnInit {
   }
 
   onChanged($imageType: ImageType) {
-    this.convertFromImageTypeTotalComponent.totalSelected = this.TotalSelected();
+    this.appModel.SetSelectionImageType($imageType);
+    this.convertFromImageTypeTotalComponent.totalSelected = this.appModel.GetTotalSelectedCount();
   }
 
   TotalSelected(): number {
