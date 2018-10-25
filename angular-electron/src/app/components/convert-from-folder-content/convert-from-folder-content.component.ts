@@ -25,8 +25,8 @@ export class ConvertFromFolderContentComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private appModel: AppModelService) { }
 
-  public getFileExtentionsCount(folderSelected: string): void {
-    this.appApiService.getFileExtentionsCount(folderSelected).subscribe((data:  Array<ImageType>) => {
+  public updateFileExtentionsCount(): void {
+    this.appApiService.getFileExtentionsCount(this.appModel.folderFrom).subscribe((data:  Array<ImageType>) => {
       this.imageTypes = data;
       this.ref.detectChanges();
     });
@@ -35,6 +35,7 @@ export class ConvertFromFolderContentComponent implements OnInit {
   onChanged($imageType: ImageType) {
     this.appModel.SetSelectionImageType($imageType);
     this.convertFromImageTypeTotalComponent.totalSelected = this.appModel.GetTotalSelectedCount();
+    this.ref.detectChanges();
   }
 
   TotalSelected(): number {

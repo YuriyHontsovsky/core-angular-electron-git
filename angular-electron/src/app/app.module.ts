@@ -26,7 +26,6 @@ import { AppModelService } from './providers/app-model.service';
 import { ConvertFromFolderContentComponent } from './components/convert-from-folder-content/convert-from-folder-content.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ProgressComponent } from './components/progress/progress.component';
-import { ConvertComponent } from './components/convert/convert.component';
 import { ConvertFromImageTypeComponent } from './components/convert-from-image-type/convert-from-image-type.component';
 import { ConvertFromImageTypeTotalComponent } from './components/convert-from-image-type-total/convert-from-image-type-total.component';
 
@@ -46,7 +45,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConvertFromFolderContentComponent,
     SettingsComponent,
     ProgressComponent,
-    ConvertComponent,
     ConvertFromImageTypeComponent,
     ConvertFromImageTypeTotalComponent
   ],

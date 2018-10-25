@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppApiService } from '../../providers/app-api.service';
 import { ConvertParams } from '../../classes/ConvertParams';
+import { AppModelService } from '../../providers/app-model.service';
 
 @Component({
   selector: 'app-convert-to',
@@ -11,7 +12,12 @@ export class ConvertToComponent implements OnInit {
 
   outputFolderTitle = 'Output Folder';
 
-  constructor(private appApiService: AppApiService, private ref: ChangeDetectorRef) { }
+  constructor(
+    private appApiService: AppApiService,
+    private ref: ChangeDetectorRef,
+    private appModel: AppModelService) {
+
+  }
 
   ngOnInit() {
   }
@@ -25,6 +31,10 @@ export class ConvertToComponent implements OnInit {
     this.appApiService.postConvert(convertParams).subscribe((value: ConvertParams) => {
       this.ref.detectChanges();
     });
+  }
+
+  onFolderSelected($folderSelected: string) {
+    this.appModel.folderTo = $folderSelected;
   }
 
 }

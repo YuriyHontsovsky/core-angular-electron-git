@@ -3,7 +3,7 @@
     CONVERT TO
   </p>
   <br>
-  <app-select-folder [inputTitle] = "outputFolderTitle"></app-select-folder>
+  <app-select-folder [inputTitle] = "outputFolderTitle" (folderSelected) = "onFolderSelected($event)"></app-select-folder>
   <br>
   <app-settings></app-settings>
   <br>
