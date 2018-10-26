@@ -23,12 +23,7 @@ export class ConvertToComponent implements OnInit {
   }
 
   onConvert() {
-    const convertParams = new ConvertParams();
-    convertParams.folderFrom = '';
-    convertParams.folderTo = '';
-    convertParams.extentions = [''];
-
-    this.appApiService.postConvert(convertParams).subscribe((value: ConvertParams) => {
+    this.appApiService.postConvert(this.appModel.GetConvertParams()).subscribe((value: ConvertParams) => {
       this.ref.detectChanges();
     });
   }

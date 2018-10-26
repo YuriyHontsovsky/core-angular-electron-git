@@ -37,16 +37,5 @@ namespace api.Controllers
 
             return Ok(result);
         }
-
-        // GET api/FolderContent
-        [HttpGet]
-        public IActionResult FolderContentHome()
-        {
-            var result = new[] {
-                new { test = "test" },
-            };
-
-            return Ok(result);
-        }
     }
 }
