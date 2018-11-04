@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using api.Classes;
+using ImageMagick;
 using Microsoft.AspNetCore.Mvc;
 using ToolBox.Bridge;
 using ToolBox.Notification;
@@ -33,27 +36,17 @@ namespace api.Controllers
 
         // POST convert
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post([FromBody] ConvertParams convertParams)
         {
-            string testString = "test";
-
-            /*
-            Response resultResponse = _shell.Term("convert '/Users/ygont/Development/core_electron/src/ImageMagick/flower_original.jpg' -font courier -fill white -pointsize 200 -annotate +250+250 'Flower 666' '/Users/ygont/Development/core_electron/src/ImageMagick/result.jpg'", Output.Hidden);
-
-            if (resultResponse.code == 0)
+            
+            using (MagickImage image = new MagickImage(Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy.jpg")))
             {
-                testString = "Command Works :D";
+                // Save frame as jpg
+                image.Write(Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy-CONVERTED_2.png"));
             }
-            else
-            {
-                testString = resultResponse.stderr;
-            }
-            */
 
-            var result = new[] {
-                new { FirstName = testString, LastName = "Doe" },
-                new { FirstName = "Mike", LastName = "Smith" }
-            };
+            var result = 
+                new { convertTestFeadback = Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy-CONVERTED_2.png") };
 
             return Ok(result);
         }

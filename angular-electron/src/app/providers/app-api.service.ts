@@ -18,10 +18,6 @@ export class AppApiService {
 
   constructor(private  httpClient:  HttpClient) { }
 
-  getContacts() {
-    return this.httpClient.get(`${this.API_URL}/contacts`);
-  }
-
   getFileExtentionsCount(folder) {
     return this.httpClient.get(`${this.API_URL}/foldercontent/${encodeURIComponent(folder)}`);
   }

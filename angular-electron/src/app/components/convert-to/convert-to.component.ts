@@ -11,19 +11,20 @@ import { AppModelService } from '../../providers/app-model.service';
 export class ConvertToComponent implements OnInit {
 
   outputFolderTitle = 'Output Folder';
+  convertTestFeadback = 'empty convertTestFeadback';
 
   constructor(
     private appApiService: AppApiService,
     private ref: ChangeDetectorRef,
     private appModel: AppModelService) {
-
   }
 
   ngOnInit() {
   }
 
   onConvert() {
-    this.appApiService.postConvert(this.appModel.GetConvertParams()).subscribe((value: ConvertParams) => {
+    this.appApiService.postConvert(this.appModel.GetConvertParams()).subscribe((result: any) => {
+      this.convertTestFeadback = JSON.stringify(result);
       this.ref.detectChanges();
     });
   }
