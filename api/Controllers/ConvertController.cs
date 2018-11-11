@@ -38,17 +38,22 @@ namespace api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] ConvertParams convertParams)
         {
-            
-            using (MagickImage image = new MagickImage(Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy.jpg")))
+            int count = 0;
+            foreach(string ext in convertParams.extentions)
             {
-                // Save frame as jpg
-                image.Write(Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy-CONVERTED_2.png"));
+                foreach (string fileName in Directory.EnumerateFiles(convertParams.folderFrom, "*." + ext))
+                {
+                    using (MagickImage image = new MagickImage(fileName))
+                    {
+                        // Save frame as jpg
+                        image.Write(Path.Combine(convertParams.folderTo, Path.GetFileNameWithoutExtension(fileName) + ".jpg"));
+                        count++;
+                    }
+                }
+
             }
 
-            var result = 
-                new { convertTestFeadback = Path.Combine(convertParams.folderFrom, "administratyvna-karta-ukrainy-CONVERTED_2.png") };
-
-            return Ok(result);
+            return Ok(new { count });
         }
     }
 }
